@@ -1,0 +1,33 @@
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+public class Ticket
+{
+  private static int StartingTicketID=1000;
+  public int TicketID;
+  public String TicketType;
+  public String IssueTime,ExpiryTime;
+  public Calendar currentTime=Calendar.getInstance();
+  public Ticket()
+  {
+  }
+  public String AssgnTicket(String Type)
+  {
+    this.TicketID=StartingTicketID++;
+    this.TicketType=Type;
+    Calendar cal = Calendar.getInstance();
+    String Date_Format = "dd-MM-yyyy HH:mm:ss";
+    SimpleDateFormat sdf = new SimpleDateFormat(Date_Format);
+    this.IssueTime=sdf.format(cal.getTime());
+    cal.add(Calendar.DAY_OF_YEAR, 1);
+    this.ExpiryTime=sdf.format(cal.getTime());
+    return(" TICKET ID = "+TicketID+"\n TICKET TYPE =  "+TicketType+"\n TICKET ISSUED TIME =  "+IssueTime+"\n TICKET EXPIRY TIME =  "+ExpiryTime);
+  }
+  public String FindTicketSession()
+    {
+        if (this.currentTime.before(this.ExpiryTime)||this.currentTime.equals(this.ExpiryTime))
+        return "Valid";
+        else if(this.currentTime.after(this.ExpiryTime))
+        return "Invalid";
+        return "Invalid";
+    }
+}

@@ -1,0 +1,20 @@
+public class VehicleOwner
+{
+    public String vehicleNumber;
+    public String vehicleType;
+    public Ticket vehicleTicket=new Ticket();
+    public SmartCard vehicleSmartCard=new SmartCard();
+    public VehicleOwner()
+    {
+    }
+    public VehicleOwner(String vehicleNumber,String vehicleType)
+    {
+        if(vehicleType.equalsIgnoreCase("car")||vehicleType.equalsIgnoreCase("auto")||vehicleType.equalsIgnoreCase("bus")||vehicleType.equalsIgnoreCase("truck"))
+        {
+        this.vehicleNumber=vehicleNumber;
+        this.vehicleType=vehicleType;
+        this.vehicleTicket=null;
+        this.vehicleSmartCard=null;
+        }
+    }
+}

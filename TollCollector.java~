@@ -1,0 +1,51 @@
+import java.util.*;
+import java.text.SimpleDateFormat;
+class TollCollector
+{
+  public ArrayList <Ticket> TicketObj = new ArrayList <Ticket> ();
+  public ArrayList <SmartCard> CardObj = new ArrayList <SmartCard> ();
+  public ArrayList <VehicleOwner> vehicleList = new ArrayList <VehicleOwner> ();
+  public VehicleOwner vehicleObject = new VehicleOwner();
+  public int fare=0;
+  public int revenue=0;
+  public int vehiclecount=0;
+  public TollCollector()
+    {
+    }
+  
+  public String IssueTicket(VehicleOwner vehicleObj,Ticket t,String Type)
+  {
+   
+   System.out.println(t.AssgnTicket(Type));
+   if (vehicleObj.vehicleType.equalsIgnoreCase("car"))
+   {
+     if (Type.equalsIgnoreCase("one way"))
+       fare=17;
+     if (Type.equalsIgnoreCase("two way")) 
+       fare=30;
+     if (Type.equalsIgnoreCase("multi way")) 
+       fare=50;
+   }
+   if (vehicleObj.vehicleType.equalsIgnoreCase("auto"))
+   {
+     if (Type.equalsIgnoreCase("one way"))
+       fare=12;
+     if (Type.equalsIgnoreCase("two way")) 
+       fare=20;
+     if (Type.equalsIgnoreCase("multi way")) 
+       fare=40;
+   }
+   if (vehicleObj.vehicleType.equalsIgnoreCase("truck") || vehicleObj.vehicleType.equalsIgnoreCase("bus"))
+   {
+     if (Type.equalsIgnoreCase("one way"))
+       fare=75;
+     if (Type.equalsIgnoreCase("two way")) 
+       fare=145;
+     if (Type.equalsIgnoreCase("multi way")) 
+       fare=200;
+   }
+   revenue=revenue+fare;
+   vehiclecount++;
+   return ("FARE =" +fare+" Revenue ="+revenue+" Vehicle Count ="+vehiclecount);
+  } 
+}

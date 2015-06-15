@@ -1,0 +1,20 @@
+import java.util.*;
+import java.text.SimpleDateFormat;
+class Admin
+{
+  public int fare;
+  public Admin()
+  {
+  }
+  public String IssueSmartCard(VehicleOwner vehicleObj,SmartCard s)
+  {
+   System.out.println(s.AssgnCard());
+   if (vehicleObj.vehicleType.equalsIgnoreCase("car"))
+         fare=1250;
+   if (vehicleObj.vehicleType.equalsIgnoreCase("auto"))
+         fare=1000;
+   if (vehicleObj.vehicleType.equalsIgnoreCase("truck") || vehicleObj.vehicleType.equalsIgnoreCase("bus"))
+         fare=5000;
+   return "Fare ="+fare;
+  }
+}

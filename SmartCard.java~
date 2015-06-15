@@ -1,0 +1,36 @@
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+class SmartCard
+{
+  private static int StartingCardNo=1000;
+  public int CardNo;
+  public String StartDate,EndDate,TicketType;
+  public String Date_Format = "dd-MM-yyyy";
+  public Calendar currentTime=Calendar.getInstance();
+  public Calendar cal=Calendar.getInstance();
+  SimpleDateFormat sdf = new SimpleDateFormat(Date_Format);
+  public SmartCard()
+  {
+  }
+  public String AssgnCard()
+  {
+    this.CardNo=StartingCardNo++;
+    this.StartDate=sdf.format(cal.getTime());
+    cal.add(Calendar.MONTH ,1);
+    this.EndDate=sdf.format(cal.getTime());
+    return ("\n CARD NUMBER = "+CardNo+"\n ISSUE DATE = "+StartDate+"\n EXPIRY DATE = "+EndDate);
+  }
+  public String FindCardSession()
+    {
+        if (this.currentTime.before(this.EndDate)||this.currentTime.equals(this.EndDate))
+        return "Valid";
+        else if(this.currentTime.after(this.EndDate))
+        return "Invalid";
+        return "Invalid";
+    }
+  public void Renew()
+    {
+        cal.add(Calendar.MONTH ,1);
+        this.EndDate=sdf.format(cal.getTime());
+    }
+}
